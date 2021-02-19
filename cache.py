@@ -14,7 +14,6 @@ screen_dimension=(1024,768)
 screen_mid=(screen_dimension[0]/2+calibrageW,screen_dimension[1]/2+calibrageH)
 
 #METHODES DE CHARGEMENT D'ANIMATION
-
 def load_rotate(img,name) : #Pré-charge une animation de rotation de l'image "img". Elle peut être apellé grace au string "rotate_name"
 	name="rotate_"+name #Défini le nom à donner à l'instance d'Animation()
 	print("Loading animation "+str(name))
@@ -55,7 +54,7 @@ def load_charge(dimension,name,img=False,concentration=3,speed=15) : #Pré-charg
 			CenterBlit(surface,img_ball,(dimension[0]/2,dimension[1]/2)) #Une fois toutes les balls déplacées, on place img par dessus, au centre
 		else :
 			CenterBlit(surface,img,(dimension[0]/2,dimension[1]/2)) #Une fois toutes les balls déplacées, on place img par dessus, au centre
-		temp=surface.copy() 
+		temp=surface.copy()
 		temp.set_colorkey((0,0,0)) #Défini tous les pixels noirs comme transparents
 		Cache[name].append(temp) #Intégration de la "photographie" de la surface comme une frame d'animation normale
 class charge_ball() : #Classe utilisée par loard_charge(). Elle utilise le même principe que la classe Animation(), mais est utilisée sur une autre Surface par load_charge()
@@ -64,7 +63,7 @@ class charge_ball() : #Classe utilisée par loard_charge(). Elle utilise le mêm
 		self.img=img
 		self.pos=pos
 		self.aim=aim
-		self.nb_frames=speed #Les balles crées parcouront la distance entre leur position initiale (pos) et leur destination (aim) en ce nombre de frame. 
+		self.nb_frames=speed #Les balles crées parcouront la distance entre leur position initiale (pos) et leur destination (aim) en ce nombre de frame.
 		self.move_step=(self.aim[0]-self.pos[0],self.aim[1]-self.pos[1])
 		self.move_step=(self.move_step[0]/self.nb_frames,self.move_step[1]/self.nb_frames)
 		self.current_frame=0
@@ -73,7 +72,7 @@ class charge_ball() : #Classe utilisée par loard_charge(). Elle utilise le mêm
 		CenterBlit(self.surface,self.img,self.pos)
 		self.current_frame+=1
 	def isOver(self) : #Verifie si l'animation est arrivée à son terme, utilisé dans le step_animation() pour supprimer les animations finies
-		if self.current_frame>=self.nb_frames : 
+		if self.current_frame>=self.nb_frames :
 				return True
 		else :
 			return False
@@ -98,7 +97,7 @@ def load_decharge(dimension,name,img=False,concentration=3,speed=15) : #Pré-cha
 			CenterBlit(surface,img_ball,(dimension[0]/2,dimension[1]/2)) #Une fois toutes les balls déplacées, on place img par dessus, au centre
 		else :
 			CenterBlit(surface,img,(dimension[0]/2,dimension[1]/2)) #Une fois toutes les balls déplacées, on place img par dessus, au centre
-		temp=surface.copy() 
+		temp=surface.copy()
 		temp.set_colorkey((0,0,0)) #Défini tous les pixels noirs comme transparents
 		Cache[name].append(temp) #Intégration de la "photographie" de la surface comme une frame d'animation normale
 
