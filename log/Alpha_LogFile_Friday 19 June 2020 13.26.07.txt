@@ -1,3 +1,0 @@
-Ce fichier est un log du jeu Astrolabium. Une partie a ete commencee le Friday 19 June 2020 a 13.26.07
-Numero de l'input(0):Heure de l'input(1)               :Etat Hardware potentiomÃ¨tre(2):Etat de la partie(3)
-self.number_input   :time.strftime("%A %d %B %Y %H.%M.%S"):chiffre de 1 Ã  29             :tableau contenant l'etat de chacun des points (False ou True)

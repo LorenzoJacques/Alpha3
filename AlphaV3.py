@@ -26,7 +26,7 @@ import random
 from easy import * #Liste de méthodes personnalsiées utilisées pour me simplifier la vie
 from data import * #Structure de donnée utilisée dans le jeu
 from cache import * #Gestion des animations et du cache
-import driver #Gestion de l'état Hardware
+import driver2 as driver #Gestion de l'état Hardware
 import sound #Gestion du son
 
 #CLASSE ANIMATION
@@ -35,7 +35,7 @@ import sound #Gestion du son
 #Avec cette classe, il n'est pas possible de faire une animation de déplacement. En revanche, on peut modifier sa vitesse et la faire boucler.
 #En gros, on initialise une instace en spécifiant une position et une string arbitraire qui correspond à une des animations stockée dans le dictionnaire cache.
 
-class Animation() : #Classe générale contenant le principe de fonctionnement de l'animation 
+class Animation() : #Classe générale contenant le principe de fonctionnement de l'animation
 	def __init__(self,img,pos,speed=1,anim_loop=False,begin_loop_at=0,end_loop_before=0) :
 		self.max_frame=len(Cache[img])-end_loop_before #Nombre de frames contenu dans l'animation. En fonction du fps choisit, l'animation dureras plus ou moins longtemps
 		self.img=img
@@ -46,9 +46,9 @@ class Animation() : #Classe générale contenant le principe de fonctionnement d
 		self.begin_loop_at=begin_loop_at #Permet de loop à en retournant à un une frame spécifiée plutot qu'à la frame 0
 	def step(self) : #Méthode apellée à chaque actualisation de la fenetre
 		CenterBlit(Screen,Cache[self.img][self.current_frame],self.pos) #récupére l'image correspondant à current_frame dans le cache et la colle sur Screen
-		self.current_frame+=1*self.speed #La vitesse modifie la fois la vitesse d'animation 
+		self.current_frame+=1*self.speed #La vitesse modifie la fois la vitesse d'animation
 	def isOver(self) : #Verifie si l'animation est arrivée à son terme, utilisé dans le step_animation() pour supprimer les animations finies
-		if self.current_frame>=self.max_frame : 
+		if self.current_frame>=self.max_frame :
 			if self.loop : #Si l'animation doti boucler, la remet à zéro
 				self.current_frame=0+self.begin_loop_at
 				return False
@@ -108,7 +108,7 @@ class Activating() :
 		self.current_frame+=1
 		if self.current_frame>=150 :
 			Layers['selector'][0].speed=1
-			Layers['selector'][1].speed=1	
+			Layers['selector'][1].speed=1
 			self.activating=False
 			self.current_frame=0
 			sound.activation.play()
@@ -128,7 +128,7 @@ class Crashing() :
 			sound.charge.stop()
 			sound.bug.play()
 			Layers['selector'][0].speed=1
-			Layers['selector'][1].speed=1	
+			Layers['selector'][1].speed=1
 			self.activating=False
 			self.current_frame=0
 
@@ -138,14 +138,14 @@ on=True #Variable permettant d'arreter la boucle while principale
 fps=30 #Définition des fps du programme
 
 #Un point correspond à un des 27 symboles à afficher. On trouve dans ce tableau leur état (activé ou désactivé), leur position (par rapport au centre de l'écran) et leur image (tourné en direction du centre de l'écran)
-Points=[0]*30 
+Points=[0]*30
 for i in range(0,30) :
 	if i!=0 and i!=10 and i!= 20 : #0, 10 et 20 ne coorepondent pas à des points qui existent.
 		Points[i]={'on':False,'num':str(i),'pos':(Data[i]["pos"][0]+screen_mid_true[0],Data[i]["pos"][1]+screen_mid_true[1]),'img':pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"])} #Récupère les données correspondante dans data
 	else :
 		Points[i]=False
 #La liste Layers acceuille les différentes couches sur lesquelles on place les animation. Elles sont appliquées dans cet ordre
-Layers={'background':[],'selector':[],'point':[],'temp':[]} 
+Layers={'background':[],'selector':[],'point':[],'temp':[]}
 
 #Creation de Clock, qui sert à définir et mesurer les fps
 Clock = pygame.time.Clock()
@@ -210,7 +210,7 @@ def Activation(meh) :
 		Activation_Good(msg)
 	else :
 		Activation_Bad()
-		
+
 def Activation_Good(msg) :
 	sound.charge.play()
 	activator.activating=True
@@ -254,6 +254,3 @@ while on :
 			on=0
 	log.tic() # Compte le nomre d'itération, et active la photographie du log
 	Clock.tick(fps) #Attend le temps nécessaire pour avoir le fps demandé
-
-
-
