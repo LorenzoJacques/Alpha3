@@ -5,7 +5,7 @@ from time import *
 #Déclaration des variables hardware
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
-MCP=[12,16,18,22] #GPIO connectés aux pins supérieurs 4, 5, 6 et 7 du MCP3008. Les pins 1 et 2 sont branchés sur 3.3 volts, et les pins 3 et 8 sur la masse 
+MCP=[12,16,18,22] #GPIO connectés aux pins supérieurs 4, 5, 6 et 7 du MCP3008. Les pins 1 et 2 sont branchés sur 3.3 volts, et les pins 3 et 8 sur la masse
 buttons=[32,3,5,40] #Autres GPIO. Le premier correspond à la source d'éléctricité. Le deuxième au A, et le troisième au B de l'Encoder Rotatif. Le quatrième détecte la poussée de la poignée
 
 #Déclaration des constantes
@@ -85,7 +85,7 @@ def get_type() : #Récupère la valeur du potentiomètre et retourne 0, 10 ou 20
 		return 10
 	if 791<adcout<1030 :
 		return 20
-	return adcout
+	return 0
 
 def get_msg() : #Retourn le message envoyé à la machine en combinant l'élément et le type séléctionné
 	return get_element()+get_type()
@@ -156,4 +156,3 @@ GPIO.add_event_detect(gpio['rotor_B'], GPIO.BOTH, callback=callback_B)
 
 def define_callback_poignee(methode) : #Methode permettant de connecter une methode à l'activation de la poignée
 	GPIO.add_event_detect(gpio['poignee'], GPIO.RISING, callback=methode)
-
