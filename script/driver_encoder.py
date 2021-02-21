@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+# coding: latin-1
+
 import RPi.GPIO as GPIO
 import time
 import settings
@@ -16,6 +19,7 @@ gpio={
 "rotor_A":settings.GPIO_encoder[0],
 "rotor_B":settings.GPIO_encoder[1]
 }
+
 #Configuration of the callback function
 GPIO.add_event_detect(gpio['rotor_A'], GPIO.BOTH, callback=callback_A)
 GPIO.add_event_detect(gpio['rotor_B'], GPIO.BOTH, callback=callback_B)

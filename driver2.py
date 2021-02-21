@@ -9,7 +9,6 @@ MCP=[12,16,18,22] #GPIO connectés aux pins supérieurs 4, 5, 6 et 7 du MCP3008.
 buttons=[32,3,5,40] #Autres GPIO. Le premier correspond à la source d'éléctricité. Le deuxième au A, et le troisième au B de l'Encoder Rotatif. Le quatrième détecte la poussée de la poignée
 
 #Déclaration des constantes
-fps_driver=10 #Taux de rafraichissement de la classe Driver
 angle_tic=0.30 #Taille de l'angle d'un tic de la roue
 gpio={
 "rotor_A":buttons[1],

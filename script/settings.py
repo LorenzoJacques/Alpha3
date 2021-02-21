@@ -1,15 +1,23 @@
+#!/usr/local/bin/python
+# coding: latin-1
+
 import RPi.GPIO as GPIO
-
-#----Déclaration des contantes----#
-fps=
-encoder_tic=
-
-#----Déclaration des paths----#
-
 
 #----Variables d'intégration----#
 potentiometer_inferior=333
 potentiometer_superior=666
+calibrageW=4
+calibrageH=7
+
+#----Déclaration des contantes----#
+fps=
+screen_dimension=(1024,768)
+screen_mid=(screen_dimension[0]/2+calibrageW,screen_dimension[1]/2+calibrageH) #Variable contenant les coordonnées du milieu approxiamtif du vitrail
+
+#----Déclaration des paths----#
+
+
+
 
 #----Configuration des ports GPIO----#
 GPIO.setmode(GPIO.BOARD)
