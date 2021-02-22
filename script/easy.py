@@ -2,11 +2,11 @@ import math
 
 #Sont stockées içi des méthodes personnalisée utilisées un peu partout
 
-def CenterBlit(surface,img,pos) : #Blit une image dont le centre seras les coordonannées précisées
+def CenterBlit(surface,img,pos) : #Blit une image dont le centre sera les coordonannées précisées
 	temp_pos=([pos[0]-(img.get_width()/2),pos[1]-(img.get_height()/2)])
 	surface.blit(img,temp_pos)
 
-def easy_trigo(angle,r) : #Retourne un tupple des coordonnée d'un point place sur un cercle de rayon r et placé sur un angle en radians 
+def easy_trigo(angle,r) : #Retourne un tupple des coordonnée d'un point place sur un cercle de rayon r et placé sur un angle en radians
 	tempX=r*math.cos(math.radians(angle))
 	tempY=r*math.sin(math.radians(angle))
 	return (tempX,tempY)

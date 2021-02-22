@@ -5,15 +5,12 @@
 #Initialisation de Pygame et de la fenetre principale
 import pygame
 from pygame.locals import *
+import settings
 
 pygame.init()
-screen_dimension=(1024,768)
-calibrageW=4
-calibrageH=7
-screen_mid=(screen_dimension[0]/2+calibrageW,screen_dimension[1]/2+calibrageH)
+screen_mid=settings.screen_mid
 screen_mid_true=(screen_dimension[0]/2,screen_dimension[1]/2)
-Screen=pygame.display.set_mode(screen_dimension,pygame.FULLSCREEN) #Rajouter pygame.FULLSCREEN en argument pour le mode plein écran
-#bg=pygame.image.load("ressources//bg.png").convert_alpha()
+Screen=pygame.display.set_mode(settings.screen_dimension,pygame.FULLSCREEN) #Rajouter pygame.FULLSCREEN en argument pour le mode plein écran
 #Screen étant un objet essentiel apellé tout le long du programme, il prend une majuscule
 #Les dépendances on besoin que pygame soit lancé pour s'éxecuter
 
@@ -26,7 +23,9 @@ import random
 from easy import * #Liste de méthodes personnalsiées utilisées pour me simplifier la vie
 from data import * #Structure de donnée utilisée dans le jeu
 from cache import * #Gestion des animations et du cache
-import driver2 as driver #Gestion de l'état Hardware
+import driver_potentiometer as potard
+import driver_encoder as encoder
+import driver_button as button
 import sound #Gestion du son
 
 #CLASSE ANIMATION
@@ -98,6 +97,8 @@ class LogFile() :
 		self.file.close()
 		self.number_input=self.number_input+1
 
+#----Activating et Crashing gèrent l'animation du feedback
+
 class Activating() :
 	def __init__(self) :
 		self.activating=False
@@ -116,6 +117,7 @@ class Activating() :
 			Layers['point'].append(Animation("charge_point",Points[self.msg]['pos'],anim_loop=True,begin_loop_at=30,end_loop_before=30))
 	def define_msg(self,msg) :
 		self.msg=msg
+
 class Crashing() :
 	def __init__(self) :
 		self.activating=False
@@ -132,12 +134,9 @@ class Crashing() :
 			self.activating=False
 			self.current_frame=0
 
-#DECLARATION DES VARIABLES
-
-on=True #Variable permettant d'arreter la boucle while principale
-fps=30 #Définition des fps du programme
-
-#Un point correspond à un des 27 symboles à afficher. On trouve dans ce tableau leur état (activé ou désactivé), leur position (par rapport au centre de l'écran) et leur image (tourné en direction du centre de l'écran)
+#----Creation des points----#
+#L'état de chacun des 27 points à ouvrir est rangé dans la list Points
+#C'est cette liste qui défini l'état de la partie
 Points=[0]*30
 for i in range(0,30) :
 	if i!=0 and i!=10 and i!= 20 : #0, 10 et 20 ne coorepondent pas à des points qui existent.
@@ -147,11 +146,23 @@ for i in range(0,30) :
 #La liste Layers acceuille les différentes couches sur lesquelles on place les animation. Elles sont appliquées dans cet ordre
 Layers={'background':[],'selector':[],'point':[],'temp':[]}
 
-#Creation de Clock, qui sert à définir et mesurer les fps
-Clock = pygame.time.Clock()
 
-activator=Activating()
+
+
+Layers['selector'].append(Animation("decharge_center",screen_mid,speed=1,anim_loop=True,begin_loop_at=90,end_loop_before=90)) #Lance une animation de selecteur
+Layers['selector'].append(Animation("rotate_selector_0",screen_mid,speed=1,anim_loop=True)) #Lance une animation de selecteur
+
+
+fps=settings.fps
+on=True #Variable permettant d'arreter la boucle while principale
+
+Clock = pygame.time.Clock() #Creation de Clock, qui sert à définir et mesurer les fps
+log=LogFile() #Création du LogFile()
+sound.loop.play(loops = -1) #Lancement du loop de son
+activator=Activating() #Creation des classes gérant l'animation de feedback
 crasher=Crashing()
+
+
 
 #METHODE DE RAFRAICHISEMENT DE L'ECRAN
 
@@ -172,7 +183,7 @@ def step_clean() : #Peint un écran noir par dessus l'image actuelle
 	Screen.fill((0,0,0))
 
 def step_check_state() : #Actualise le feedback sur l'état hardware
-	msg=driver.get_msg()
+	msg=get_msg()
 	msg1=str(msg+100)
 	element=int(msg1[2])
 	if element==0 :
@@ -180,6 +191,35 @@ def step_check_state() : #Actualise le feedback sur l'état hardware
 	tipe=int(msg1[1])
 	Layers['selector'][1].img="rotate_selector_"+str(tipe*10)
 	CenterBlit(Screen,Data[element+10]["img"],screen_mid)
+
+def get_msg() :
+	first_digit=potard.get_type()
+	angle=encoder.get_angle()
+	second_digit=get_element(angle)
+	msg=first_digit+second_digit
+	return msg
+
+def get_element() : #Traduit l'angle de la roue en l'élément correspondant
+	if angle>340 or angle<20 :
+		return 1
+	if 20<angle<60 :
+		return 2
+	if 60<angle<100 :
+		return 3
+	if 100<angle<140 :
+		return  4
+	if 140<angle<180 :
+		return 5
+	if 180<angle<220 :
+		return 6
+	if 220<angle<260 :
+		return 7
+	if 260<angle<300 :
+		return 8
+	if 300<angle<340 :
+		return 9
+
+
 
 def step_check_point() :
 	for point in Points :
@@ -205,7 +245,7 @@ def show_fps() : #Methode affichant les fps réel en haut à gauche de la fenêt
 #Activation
 def Activation(meh) :
 	print(meh)
-	msg=driver.get_msg()
+	msg=get_msg()
 	if IsMsgOk(msg) :
 		Activation_Good(msg)
 	else :
@@ -229,22 +269,9 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 				return True
 		return False
 
-#DEBUG
-
-def do_the_thing(pos) : #Lance una animation pour chaque Points, comme s'ils étaient tous activés
-	#Layers['selector'].append(Animation("decharge_win",(250,250),speed=2)) #Lance une animation de selecteur
-	for i in range(0,30) :
-		if i!=0 and i!=10 and i!=20 :
-			Layers['point'].append(Animation("charge_"+str(i),Points[i]['pos'],anim_loop=True,begin_loop_at=60,end_loop_before=60))
+button.define_callback_poignee(Activation)
 
 #Lancement de la boucle principale
-sound.loop.play(loops = -1) #Lancement du loop de son
-log=LogFile() #Création du LogFile()
-driver.define_callback_poignee(Activation)
-
-Layers['selector'].append(Animation("decharge_center",screen_mid,speed=1,anim_loop=True,begin_loop_at=90,end_loop_before=90)) #Lance une animation de selecteur
-Layers['selector'].append(Animation("rotate_selector_0",screen_mid,speed=1,anim_loop=True)) #Lance une animation de selecteur
-
 while on :
 	step() #Actualise l'image
 	for event in pygame.event.get(): #Si pygame recoit l'évènement QUIT, arrete la boucle principale
@@ -254,3 +281,11 @@ while on :
 			on=0
 	log.tic() # Compte le nomre d'itération, et active la photographie du log
 	Clock.tick(fps) #Attend le temps nécessaire pour avoir le fps demandé
+
+#DEBUG
+
+#def do_the_thing(pos) : #Lance una animation pour chaque Points, comme s'ils étaient tous activés
+#	#Layers['selector'].append(Animation("decharge_win",(250,250),speed=2)) #Lance une animation de selecteur
+#	for i in range(0,30) :
+#		if i!=0 and i!=10 and i!=20 :
+#			Layers['point'].append(Animation("charge_"+str(i),Points[i]['pos'],anim_loop=True,begin_loop_at=60,end_loop_before=60))

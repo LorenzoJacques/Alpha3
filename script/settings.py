@@ -4,13 +4,18 @@
 import RPi.GPIO as GPIO
 
 #----Variables d'intégration----#
+#Calibrage du potentiometre
 potentiometer_inferior=333
 potentiometer_superior=666
+#Calibrage du vitrail
 calibrageW=4
 calibrageH=7
+r0=380 #Tailel des trois cercles permettant de centrer les points dans le vitrail
+r1=295
+r2=200
 
 #----Déclaration des contantes----#
-fps=
+fps=30
 screen_dimension=(1024,768)
 screen_mid=(screen_dimension[0]/2+calibrageW,screen_dimension[1]/2+calibrageH) #Variable contenant les coordonnées du milieu approxiamtif du vitrail
 
