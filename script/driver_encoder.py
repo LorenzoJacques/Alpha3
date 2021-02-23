@@ -80,6 +80,8 @@ def falling_B():
 		average_handler(0)
 
 #Configuration of the callback function
+GPIO.setup(gpio['rotor_A'],GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(gpio['rotor_B'],GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(gpio['rotor_A'], GPIO.BOTH, callback=callback_A)
 GPIO.add_event_detect(gpio['rotor_B'], GPIO.BOTH, callback=callback_B)
 
