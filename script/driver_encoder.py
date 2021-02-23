@@ -20,11 +20,6 @@ gpio={
 "rotor_B":settings.GPIO_encoder[1]
 }
 
-#Configuration of the callback function
-GPIO.add_event_detect(gpio['rotor_A'], GPIO.BOTH, callback=callback_A)
-GPIO.add_event_detect(gpio['rotor_B'], GPIO.BOTH, callback=callback_B)
-
-
 #----Methods----#
 
 def get_angle() :
@@ -83,6 +78,10 @@ def falling_B():
 		average_handler(1)
 	else :
 		average_handler(0)
+
+#Configuration of the callback function
+GPIO.add_event_detect(gpio['rotor_A'], GPIO.BOTH, callback=callback_A)
+GPIO.add_event_detect(gpio['rotor_B'], GPIO.BOTH, callback=callback_B)
 
 if __name__=="__main__" :
     on=True
