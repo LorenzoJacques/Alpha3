@@ -139,7 +139,7 @@ class Crashing() :
 Points=[0]*30
 for i in range(0,30) :
 	if i!=0 and i!=10 and i!= 20 : #0, 10 et 20 ne coorepondent pas à des points qui existent.
-		Points[i]={'on':False,'num':str(i),'pos':(Data[i]["pos"][0]+screen_mid_true[0],Data[i]["pos"][1]+screen_mid_true[1]),'img':pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"])} #Récupère les données correspondante dans data
+		Points[i]={'on':False,'num':str(i),'pos':(Data[i]["pos"][0]+screen_mid[0],Data[i]["pos"][1]+screen_mid[1]),'img':pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"])} #Récupère les données correspondante dans data
 	else :
 		Points[i]=False
 #La liste Layers acceuille les différentes couches sur lesquelles on place les animation. Elles sont appliquées dans cet ordre
