@@ -198,7 +198,7 @@ def get_msg() :
 	msg=first_digit+second_digit
 	return msg
 
-def get_element() : #Traduit l'angle de la roue en l'élément correspondant
+def get_element(angle) : #Traduit l'angle de la roue en l'élément correspondant
 	if angle>340 or angle<20 :
 		return 1
 	if 20<angle<60 :
