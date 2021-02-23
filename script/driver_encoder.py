@@ -14,7 +14,7 @@ import settings
 angle=0 #Variable saving the relative angle of the encoder from it's start position
 angle_tic=0.30 #Since we are using a 1200-per-rotation encoder, one tic is equal to 0.30 degree
 nb_event_to_save=9 #Number of past event constituting the moving average
-moving_avg=[0]*nb_moyenne_glissante
+moving_avg=[0]*nb_event_to_save
 gpio={
 "rotor_A":settings.GPIO_encoder[0],
 "rotor_B":settings.GPIO_encoder[1]
