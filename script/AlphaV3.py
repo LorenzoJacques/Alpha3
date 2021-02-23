@@ -59,7 +59,7 @@ class Animation() : #Classe générale contenant le principe de fonctionnement d
 
 class LogFile() :
 	def __init__(self) :
-		self.file_name="log/Alpha_LogFile_"+str(time.strftime("%A %d %B %Y %H.%M.%S")+".txt")
+		self.file_name="../log/Alpha_LogFile_"+str(time.strftime("%A %d %B %Y %H.%M.%S")+".txt")
 		self.file=open(self.file_name,"w")
 		self.date_start=time.strftime("%A %d %B %Y")
 		self.time_start=time.strftime("%H.%M.%S")
