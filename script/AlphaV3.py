@@ -9,7 +9,7 @@ import settings
 
 pygame.init()
 screen_mid=settings.screen_mid
-Screen=pygame.display.set_mode(settings.screen_dimension,pygame.FULLSCREEN) #Rajouter pygame.FULLSCREEN en argument pour le mode plein écran
+Screen=pygame.display.set_mode(settings.screen_dimension) #Rajouter pygame.FULLSCREEN en argument pour le mode plein écran
 #Screen étant un objet essentiel apellé tout le long du programme, il prend une majuscule
 #Les dépendances on besoin que pygame soit lancé pour s'éxecuter
 
