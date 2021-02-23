@@ -1,6 +1,7 @@
 import math
 import pygame
 import easy
+import settings
 
 r0=settings.r0
 r1=settings.r1
