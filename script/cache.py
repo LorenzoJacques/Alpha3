@@ -118,4 +118,4 @@ load_rotate(pygame.image.load("..//ressources//anim//selector//Selector_201.png"
 load_charge((100,100),"point",concentration=5,speed_of_ball=30)
 load_decharge((300,300),"center",concentration=5,speed=90)
 
-load_charge((300,300),"ending",concentration=5,duration=240,speed_of_ball=20)
+load_charge((600,600),"ending",concentration=10,duration=60,speed_of_ball=15)
