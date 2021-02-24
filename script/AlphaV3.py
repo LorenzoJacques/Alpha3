@@ -277,8 +277,7 @@ while on :
 		if event.type==QUIT :
 			on=0
 		if event.type == KEYDOWN and event.key == K_SPACE :
-			Layers['temp'].append(Animation("ending",screen_mid,speed=1,anim_loop=True)) #Lance une animation de selecteur
-
+			Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=True)) #Lance une animation de selecteur
 	log.tic() # Compte le nomre d'itération, et active la photographie du log
 	Clock.tick(fps) #Attend le temps nécessaire pour avoir le fps demandé
 
