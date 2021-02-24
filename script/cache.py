@@ -34,10 +34,13 @@ def load_glow(img,name) : #Pré-charge une animation d'apparition et de disparit
 		temp.fill((255,255,255,i),None,pygame.BLEND_RGBA_MULT) #Cette ligne de code définit l'alpha de img. Je ne sais pas comment elle marche.
 		Cache[name].append(temp)
 
-def load_charge(dimension,name,img=False,concentration=3,duration=480,speed_of_ball=15) : #Pré-charge une animation de "chargement" ou des petites lumières se rassemblent en un centre où se trouve l'image "img"
+def load_charge(dimension,name,ball_alpha=False,img=False,concentration=3,duration=480,speed_of_ball=15) : #Pré-charge une animation de "chargement" ou des petites lumières se rassemblent en un centre où se trouve l'image "img"
 	name="charge_"+name #Défini le nom à donner à l'instance d'Animation()
 	print("Loading animation "+str(name))
-	img_ball=pygame.image.load("..//ressources//ball.png").convert_alpha() #Image de balle utilisée par l'animation
+	if ball_img==False :
+		img_ball=pygame.image.load("..//ressources//mini0.png").convert_alpha() #Image de balle utilisée par l'animation
+	else :
+		img_ball=pygame.image.load("..//ressources//ball.png").convert_alpha()
 	layers=[]
 	surface=pygame.Surface(dimension) #Chaque balle seras crée puis intégrée à une surface. Ce sont des "photographies" de ces surface qui viendront remplir la list de frames dans Cache
 	Cache[name]=[]
@@ -118,4 +121,4 @@ load_rotate(pygame.image.load("..//ressources//anim//selector//Selector_201.png"
 load_charge((100,100),"point",concentration=5,speed_of_ball=30)
 load_decharge((300,300),"center",concentration=5,speed=90)
 
-load_charge((600,600),"ending",concentration=20,duration=150,speed_of_ball=60)
+load_charge((600,600),"ending",ball_alpha=True,concentration=20,duration=150,speed_of_ball=60)
