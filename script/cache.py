@@ -34,17 +34,17 @@ def load_glow(img,name) : #Pré-charge une animation d'apparition et de disparit
 		temp.fill((255,255,255,i),None,pygame.BLEND_RGBA_MULT) #Cette ligne de code définit l'alpha de img. Je ne sais pas comment elle marche.
 		Cache[name].append(temp)
 
-def load_charge(dimension,name,img=False,concentration=3,speed=15) : #Pré-charge une animation de "chargement" ou des petites lumières se rassemblent en un centre où se trouve l'image "img"
+def load_charge(dimension,name,img=False,concentration=3,duration=480,speed_of_ball=15) : #Pré-charge une animation de "chargement" ou des petites lumières se rassemblent en un centre où se trouve l'image "img"
 	name="charge_"+name #Défini le nom à donner à l'instance d'Animation()
 	print("Loading animation "+str(name))
 	img_ball=pygame.image.load("..//ressources//mini0.png").convert_alpha() #Image de balle utilisée par l'animation
 	layers=[]
 	surface=pygame.Surface(dimension) #Chaque balle seras crée puis intégrée à une surface. Ce sont des "photographies" de ces surface qui viendront remplir la list de frames dans Cache
 	Cache[name]=[]
-	for i in range(0,480) : #A chaque itération, on crée trois nouvelles instances de charge_ball(), puis on anime les contenants de layers. On peut ensuite intégrer l'image au centre du chergement, copier l'etat de surface et l'enregistrer dans Cache
-		if i<(480-speed) :
+	for i in range(0,duration) : #A chaque itération, on crée trois nouvelles instances de charge_ball(), puis on anime les contenants de layers. On peut ensuite intégrer l'image au centre du chergement, copier l'etat de surface et l'enregistrer dans Cache
+		if i<(duration-speed_of_ball) :
 			for j in range(0,concentration) : #Création de trois nouvelles instances de charge_ball
-				layers.append(charge_ball(surface,(random.randrange(0,dimension[0]),random.randrange(0,dimension[1])),(dimension[0]/2,dimension[1]/2),img_ball,speed))
+				layers.append(charge_ball(surface,(random.randrange(0,dimension[0]),random.randrange(0,dimension[1])),(dimension[0]/2,dimension[1]/2),img_ball,speed_of_ball))
 		surface.fill((0,0,0)) #Nettoyage de la surface
 		for ball in layers :
 			ball.step()
@@ -115,7 +115,7 @@ load_rotate(pygame.image.load("..//ressources//anim//selector//Selector_201.png"
 #	if i!=0 and i!=10 and i!=20 :
 #		load_charge((100,100),str(i),img=pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"]),concentration=5,speed=30)
 
-load_charge((100,100),"point",concentration=5,speed=30)
-load_decharge((300,300),"center",concentration=5,speed=90)
+load_charge((100,100),"point",concentration=5,speed_of_ball=30)
+load_decharge((300,300),"center",concentration=5,speed_of_ball=90)
 
-load_charge((300,300),"ending",concentration=5,speed=30)
+load_charge((300,300),"ending",concentration=5,duration=240,speed_of_ball=20)
