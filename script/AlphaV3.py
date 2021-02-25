@@ -243,7 +243,6 @@ def step_have_player_won() :
 	for i in range(0,len(Points)) :
 		if i!=0 and i!=10 and i!= 20 and won==True :
 			won=Points[i]['on']
-	print(won)
 	return won
 
 #METHODES APELLEES A L'ACTIVATION
