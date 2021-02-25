@@ -118,7 +118,7 @@ def load_grow(img,name,size,nb_frame) : #Pré-charge une animation d'apparition 
 	print("base image size is"+str(img_size))
 	print("step_to_ad is"+str(step_to_add))
 	for i in range(0,nb_frame+1) :
-		Cache[name].append(pygame.transform.scale(temp_img,(img_size[0]-int(step_to_add[0]*i),img_size[1]-int(step_to_add[1]*i))))
+		Cache[name].append(pygame.transform.scale(temp_img,(img_size[0]+int(step_to_add[0]*i),img_size[1]+int(step_to_add[1]*i))))
 		print(i)
 		print(img_size[0]+int(step_to_add[0]*i))
 		print(Cache[name][-1])
@@ -140,4 +140,4 @@ load_charge((100,100),"point",concentration=5,speed_of_ball=30)
 load_decharge((300,300),"center",concentration=5,speed=90)
 
 load_charge((600,600),"ending",ball_alpha=True,concentration=20,duration=150,speed_of_ball=60)
-load_grow(pygame.image.load("..//ressources//anim//grow//fat.png").convert_alpha(),"ending",(1000,1000),60)
+load_grow(pygame.image.load("..//ressources//anim//grow//fat.png").convert_alpha(),"ending",(10,10),60)
