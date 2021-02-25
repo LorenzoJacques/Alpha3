@@ -172,6 +172,7 @@ def step() : #Méthode apellée à chaque actualisation de l'écran
 	step_check_state() #Place les Points activés
 	step_check_point()
 	show_fps() #Montre les fps
+	step_have_player_won()
 	if activator.activating==True :
 		activator.step()
 	if crasher.activating==True :
@@ -218,8 +219,6 @@ def get_element(angle) : #Traduit l'angle de la roue en l'élément correspondan
 	if 300<angle<340 :
 		return 9
 
-
-
 def step_check_point() :
 	for point in Points :
 		if point!=False :
@@ -238,6 +237,14 @@ def show_fps() : #Methode affichant les fps réel en haut à gauche de la fenêt
 	font=pygame.font.SysFont("Arial", 18)
 	to_blit=font.render(str_fps,1,pygame.Color("coral"))
 	Screen.blit(to_blit,(0,0))
+
+def step_have_player_won() :
+	won=True
+	for i in range(0,len(Points)) :
+		if i!=0 and i!=10 and i!= 20 and won==True :
+			won=Points[i]['on']
+	print(won)
+	return won
 
 #METHODES APELLEES A L'ACTIVATION
 
@@ -269,7 +276,7 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 		return False
 
 button.define_callback_poignee(Activation)
-
+counter=0
 #Lancement de la boucle principale
 while on :
 	step() #Actualise l'image
@@ -280,6 +287,15 @@ while on :
 			Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False)) #Lance une animation de selecteur
 		if event.type == KEYDOWN and event.key == K_BACKSPACE :
 			Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=False))
+		if event.type == KEYDOWN and event.key == K_a :
+			if counter==0 :
+				counter=1
+			if counter==10 :
+				counter=11
+			if counter==20 :
+				counter=21
+			Points[counter]['on']=True
+			counter=counter+1
 	log.tic() # Compte le nomre d'itération, et active la photographie du log
 	Clock.tick(fps) #Attend le temps nécessaire pour avoir le fps demandé
 
