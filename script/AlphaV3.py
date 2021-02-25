@@ -161,7 +161,7 @@ sound.loop.play(loops = -1) #Lancement du loop de son
 activator=Activating() #Creation des classes gérant l'animation de feedback
 crasher=Crashing()
 
-
+timer_on_win=0
 
 #METHODE DE RAFRAICHISEMENT DE L'ECRAN
 
@@ -275,7 +275,7 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 				return True
 		return False
 
-timer_on_win=0
+
 def launch_ending() :
 	if timer_on_win==0 :
 		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
