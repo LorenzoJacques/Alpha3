@@ -140,4 +140,4 @@ load_charge((100,100),"point",concentration=5,speed_of_ball=30)
 load_decharge((300,300),"center",concentration=5,speed=90)
 
 #load_charge((600,600),"ending",ball_alpha=True,concentration=20,duration=150,speed_of_ball=60)
-load_grow(pygame.image.load("..//ressources//anim//grow//fat.png").convert_alpha(),"ending",(10,10),60)
+load_grow(pygame.image.load("..//ressources//anim//grow//fat.png").convert_alpha(),"ending",(10,10),50)
