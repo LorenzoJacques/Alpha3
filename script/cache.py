@@ -109,7 +109,7 @@ def load_grow(img,name,size,nb_frame) : #Pré-charge une animation d'apparition 
 	name="grow_"+name #Défini le nom à donner à l'instance d'Animation()
 	print("Loading animation "+str(name))
 	Cache[name]=[]
-	img_size=temp_img.get_size()
+	img_size=img.get_size()
 	temp_img=img
 	step_to_add=(
 	(size[0]-img_size[0])/nb_frame,
@@ -118,8 +118,6 @@ def load_grow(img,name,size,nb_frame) : #Pré-charge une animation d'apparition 
 	for i in range(0,nb_frame) :
 		pygame.transform.scale(temp_img,(step_to_add[0],step_to_add[1]))
 		Cache[name].append(temp_img)
-
-
 
 #MISE EN CACHE DES ANIMATIONS NECESSAIRES
 
