@@ -172,7 +172,8 @@ def step() : #Méthode apellée à chaque actualisation de l'écran
 	step_check_state() #Place les Points activés
 	step_check_point()
 	show_fps() #Montre les fps
-	step_have_player_won()
+	if step_have_player_won() :
+		launch_ending()
 	if activator.activating==True :
 		activator.step()
 	if crasher.activating==True :
@@ -274,8 +275,17 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 				return True
 		return False
 
+timer_on_win=0
+def launch_ending() :
+	if timer_on_win==0 :
+		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
+	if timer_on_win==30 :
+		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=False))
+	timer_on_win=timer_on_win+1
+
 button.define_callback_poignee(Activation)
 counter=0
+
 #Lancement de la boucle principale
 while on :
 	step() #Actualise l'image
@@ -283,9 +293,9 @@ while on :
 		if event.type==QUIT :
 			on=0
 		if event.type == KEYDOWN and event.key == K_SPACE :
-			Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False)) #Lance une animation de selecteur
+			None
 		if event.type == KEYDOWN and event.key == K_BACKSPACE :
-			Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=False))
+			None
 		if event.type == KEYDOWN and event.key == K_a :
 			if counter==0 :
 				counter=1
