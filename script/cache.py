@@ -139,5 +139,5 @@ load_rotate(pygame.image.load("..//ressources//anim//selector//Selector_201.png"
 load_charge((100,100),"point",concentration=5,speed_of_ball=30)
 load_decharge((300,300),"center",concentration=5,speed=90)
 
-load_charge((600,600),"ending",ball_alpha=True,concentration=15,duration=150,speed_of_ball=70)
+load_charge((500,500),"ending",ball_alpha=True,concentration=15,duration=150,speed_of_ball=70)
 load_grow(pygame.image.load("..//ressources//anim//grow//medium.png").convert_alpha(),"ending",(10,10),60)
