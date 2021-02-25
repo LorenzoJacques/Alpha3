@@ -105,6 +105,21 @@ def load_decharge(dimension,name,img=False,concentration=3,speed=15) : #Pré-cha
 		temp.set_colorkey((0,0,0)) #Défini tous les pixels noirs comme transparents
 		Cache[name].append(temp) #Intégration de la "photographie" de la surface comme une frame d'animation normale
 
+def load_grow(img,name,size,nb_frame) : #Pré-charge une animation d'apparition et de disparition de l'image "img". Elle peut être apellé grace au string "glow_name"
+	name="grow_"+name #Défini le nom à donner à l'instance d'Animation()
+	print("Loading animation "+str(name))
+	Cache[name]=[]
+	img_size=temp_img.get_size()
+	temp_img=img
+	step_to_add=(
+	(size[0]-img_size[0])/nb_frame,
+	(size[1]-img_size[1])/nb_frame,
+	)
+	for i in range(0,nb_frame) :
+		pygame.transform.scale(temp_img,(step_to_add[0],step_to_add[1]))
+		Cache[name].append(temp_img)
+
+
 
 #MISE EN CACHE DES ANIMATIONS NECESSAIRES
 
@@ -122,3 +137,4 @@ load_charge((100,100),"point",concentration=5,speed_of_ball=30)
 load_decharge((300,300),"center",concentration=5,speed=90)
 
 load_charge((600,600),"ending",ball_alpha=True,concentration=20,duration=150,speed_of_ball=60)
+load_grow(pygame.image.load("..//ressources//mini0.png").convert_alpha(),"ending",(600,600),60)
