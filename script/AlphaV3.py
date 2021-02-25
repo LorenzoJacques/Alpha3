@@ -277,6 +277,7 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 
 
 def launch_ending() :
+	global timer_on_win
 	if timer_on_win==0 :
 		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
 	if timer_on_win==30 :
