@@ -122,7 +122,7 @@ def load_grow(img,name,size,nb_frame) : #Pré-charge une animation d'apparition 
 		print(i)
 		print(img_size[0]+int(step_to_add[0]*i))
 		print(Cache[name][-1])
-	Change.reverse()
+	Cache.reverse()
 
 #MISE EN CACHE DES ANIMATIONS NECESSAIRES
 
