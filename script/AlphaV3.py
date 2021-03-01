@@ -294,7 +294,7 @@ while on :
 		if event.type==QUIT :
 			on=0
 		if event.type == KEYDOWN and event.key == K_SPACE :
-			None
+			Activation("meh")
 		if event.type == KEYDOWN and event.key == K_BACKSPACE :
 			None
 		if event.type == KEYDOWN and event.key == K_a :
