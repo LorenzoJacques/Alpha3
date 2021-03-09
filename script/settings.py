@@ -34,4 +34,5 @@ GPIO_source=32 #GPIO fournissant l'éléctricité de l'encoeur et de la poignée
 GPIO_encoder=[3,5] #GPIO dédiées à l'encodeur
 GPIO_poignee=40 #GPIO dédiées à la poignée
 
-GPIO.setup(GPIO_source, GPIO.OUT) #Allumage de la source éléctrique
+GPIO.setup(GPIO_source, GPIO.OUT) #Configuration de la source d'éléctricité
+GPIO.output(GPIO_source, True) #Allumage de la source éléctrique
