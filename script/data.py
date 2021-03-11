@@ -45,20 +45,20 @@ ending_font=pygame.freetype.Font("..//ressources//jmh-legajo.regular.ttf")
 ending_text=["Du vide à la lumière",
 "de pluton au soleil",
 "de la mort à l être",
-".",
+"a",
 "De la periphérie vers le centre",
 "de l imparfait au parfait",
 "vous avez complété le cercle",
 "suivant les antiques méthodes de l Alchimie",
-".",
+"a",
 "Et ainsi vous avez accédé par Esso",
 "l être dans l instant",
 "à l immortalité dans le présent",
-".",
+"a",
 "Nicolas Flamel"]
 
-ending_image=pygame.Surface((500,500))
+ending_image=pygame.Surface((280,500))
 ending_image=ending_image.convert_alpha()
 ending_image.fill((0,0,0,0))
 for i in range(0,len(ending_text)) :
-    ending_font.render_to(ending_image,((len(ending_text[i])/2)*10,i*20),ending_text[i],fgcolor=pygame.Color(0,0,0,255),bgcolor=pygame.Color(255,255,255,255),size=20)
+    ending_font.render_to(ending_image,((len(ending_text[i])*10)/2,i*20),ending_text[i],fgcolor=pygame.Color(0,0,0,255),bgcolor=pygame.Color(255,255,255,255),size=20)
