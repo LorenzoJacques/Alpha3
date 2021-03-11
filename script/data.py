@@ -38,6 +38,7 @@ Data[27]= { "img" : pygame.image.load("..//ressources//img//white//27.png").conv
 Data[28]= { "img" : pygame.image.load("..//ressources//img//white//28.png").convert_alpha(), "need" : [18,25,27],"pos" : point[28], "tilt" :   -120}
 Data[29]= { "img" : pygame.image.load("..//ressources//img//white//29.png").convert_alpha(), "need" : [19,26,28],"pos" : point[29], "tilt" :   -160}
 
+import pygame.freetype
 pygame.freetype.init()
 ending_font=pygame.freetype.Font("..//ressources//jmh-legajo.regular.ttf")
 
