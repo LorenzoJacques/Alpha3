@@ -282,7 +282,7 @@ def animate_ending() :
 	if timer_on_win<5 :
 		sound.charge.play()
 	if timer_on_win==30 :
-		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=True,begin_loop_at=140))
+		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=True,begin_loop_at=145))
 	if timer_on_win>90 :
 		CenterBlit(Screen,ending_image,settings.screen_mid)
 	timer_on_win=timer_on_win+1
