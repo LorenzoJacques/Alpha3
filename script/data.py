@@ -61,4 +61,4 @@ ending_image=pygame.Surface((500,280))
 ending_image=ending_image.convert_alpha()
 ending_image.fill((0,0,0,0))
 for i in range(0,len(ending_text)) :
-    ending_font.render_to(ending_image,(250-((len(ending_text[i])*8)/2),i*20),ending_text[i],fgcolor=pygame.Color(0,0,0,255),bgcolor=pygame.Color(255,255,255,255),size=20)
+    ending_font.render_to(ending_image,(250-((len(ending_text[i])*5)/2),i*20),ending_text[i],fgcolor=pygame.Color(0,0,0,255),bgcolor=pygame.Color(255,255,255,255),size=15)
