@@ -58,4 +58,4 @@ l\'être dans l'instant
 Nicolas Flamel
 """
 
-ending_image=ending_font.render(ending_text,fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255))
+ending_image=ending_font.render(ending_text,fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255),size=10)
