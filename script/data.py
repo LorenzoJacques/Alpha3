@@ -42,20 +42,20 @@ import pygame.freetype
 pygame.freetype.init()
 ending_font=pygame.freetype.Font("..//ressources//jmh-legajo.regular.ttf")
 
-ending_text="""Du vide à la lumière
-de pluton au soleil
-de la mort à l'etre
-
-De la periphérie vers le centre
-de l'imparfait au parfait
-vous avez complété le cercle
-suivant les antiques méthodes de l'Alchimie
-
-Et ainsi vous avez accédé par Esso
-l\'être dans l'instant
-à l'immortalité dans le présent
-
-Nicolas Flamel
+ending_text="""Du vide à la lumière\n
+de pluton au soleil\n
+de la mort à l'etre\n
+\n
+De la periphérie vers le centre\n
+de l'imparfait au parfait\n
+vous avez complété le cercle\n
+suivant les antiques méthodes de l'Alchimie\n
+\n
+Et ainsi vous avez accédé par Esso\n
+l\'être dans l'instant\n
+à l'immortalité dans le présent\n
+\n
+Nicolas Flamel\n
 """
 
-ending_image=ending_font.render(ending_text,fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255),size=10)
+ending_image=ending_font.render(ending_text,fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255),size=20)
