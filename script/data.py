@@ -52,12 +52,13 @@ ending_text=["Du vide à la lumière",
 "suivant les antiques méthodes de l'Alchimie",
 " ",
 "Et ainsi vous avez accédé par Esso",
-"l\'être dans l'instant",
+"l'être dans l'instant",
 "à l'immortalité dans le présent",
 " ",
 "Nicolas Flamel"]
 
 ending_image=pygame.Surface((250,250))
+ending_image.fill((0,0,0,0))
 ending_image=ending_image.convert_alpha()
 for i in range(0,len(ending_text)) :
-    ending_font.render_to(ending_image,(len(ending_text[i])/2,i*20),ending_text[i],fgcolor=pygame.Color(0,0,0,255),bgcolor=pygame.Color(255,255,255,255),size=20)
+    ending_font.render_to(ending_image,((len(ending_text[i])/2)*20,i*20),ending_text[i],fgcolor=pygame.Color(0,0,0,255),bgcolor=pygame.Color(255,255,255,255),size=20)
