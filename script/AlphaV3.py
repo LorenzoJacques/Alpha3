@@ -173,7 +173,7 @@ def step() : #Méthode apellée à chaque actualisation de l'écran
 	step_check_point()
 	show_fps() #Montre les fps
 	if step_have_player_won() :
-		launch_ending()
+		animate_ending()
 	if activator.activating==True :
 		activator.step()
 	if crasher.activating==True :
@@ -275,13 +275,16 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 				return True
 		return False
 
-
-def launch_ending() :
+def animate_ending() :
 	global timer_on_win
 	if timer_on_win==0 :
 		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
+	if timer_on_win<5 :
+		sound.charge.play()
 	if timer_on_win==30 :
 		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=False))
+	if timer_on_win>90 :
+		CenterBlit(Screen,data.ending_image,settings.screen_mid)
 	timer_on_win=timer_on_win+1
 
 button.define_callback_poignee(Activation)
@@ -306,7 +309,7 @@ while on :
 				counter=21
 			Points[counter]['on']=True
 			counter=counter+1
-	log.tic() # Compte le nomre d'itération, et active la photographie du log
+	log.tic() # Compte le nombre d'itération, et active la photographie du log
 	Clock.tick(fps) #Attend le temps nécessaire pour avoir le fps demandé
 
 #DEBUG

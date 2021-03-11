@@ -37,3 +37,24 @@ Data[26]= { "img" : pygame.image.load("..//ressources//img//white//26.png").conv
 Data[27]= { "img" : pygame.image.load("..//ressources//img//white//27.png").convert_alpha(), "need" : [17,24],   "pos" : point[27], "tilt" : -80   }
 Data[28]= { "img" : pygame.image.load("..//ressources//img//white//28.png").convert_alpha(), "need" : [18,25,27],"pos" : point[28], "tilt" :   -120}
 Data[29]= { "img" : pygame.image.load("..//ressources//img//white//29.png").convert_alpha(), "need" : [19,26,28],"pos" : point[29], "tilt" :   -160}
+
+pygame.freetype.init()
+ending_font=pygame.freetype.Font("..//ressources//jmh-legajo.regular.ttf")
+
+ending_text="""Du vide à la lumière
+de pluton au soleil
+de la mort à l'etre
+
+De la periphérie vers le centre
+de l'imparfait au parfait
+vous avez complété le cercle
+suivant les antiques méthodes de l'Alchimie
+
+Et ainsi vous avez accédé par Esso
+l\'être dans l'instant
+à l'immortalité dans le présent
+
+Nicolas Flamel
+"""
+
+ending_image=ending_font.render(ending_text,fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255))
