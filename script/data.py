@@ -59,4 +59,4 @@ ending_text=["Du vide à la lumière",
 
 ending_image=pygame.Surface((500,500))
 for i in range(0,len(ending_text)) :
-    ending_font.render_to(ending_image,(i*10,0),ending_text[i],fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255),size=20)
+    ending_font.render_to(ending_image,(0,i*10),ending_text[i],fgcolor=pygame.Color(0,0,0),bgcolor=pygame.Color(255,255,255),size=20)
