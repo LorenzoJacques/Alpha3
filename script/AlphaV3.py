@@ -284,7 +284,7 @@ def animate_ending() :
 	if timer_on_win==30 :
 		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=False))
 	if timer_on_win>90 :
-		CenterBlit(Screen,data.ending_image,settings.screen_mid)
+		CenterBlit(Screen,ending_image,settings.screen_mid)
 	timer_on_win=timer_on_win+1
 
 button.define_callback_poignee(Activation)
