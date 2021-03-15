@@ -296,7 +296,7 @@ def animate_ending() :
 
 def reset_Alpha() :
 	global Points
-	global timer_on_win=0
+	global timer_on_win
 	global counter
 	for i in range(0,30) :
 		if i!=0 and i!=10 and i!= 20 : #0, 10 et 20 ne coorepondent pas à des points qui existent.
