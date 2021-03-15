@@ -302,6 +302,7 @@ def reset_Alpha() :
 			Points[i]={'on':False,'num':str(i),'pos':(Data[i]["pos"][0]+screen_mid[0],Data[i]["pos"][1]+screen_mid[1]),'img':pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"])} #Récupère les données correspondante dans data
 		else :
 			Points[i]=False
+	Layers['temp']=[]
 	timer_on_win=0
 	counter=0
 
