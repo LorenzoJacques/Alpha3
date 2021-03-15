@@ -281,7 +281,6 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 def animate_ending() :
 	global timer_on_win
 	tic_to_reset=200  #settings.reset_timer*settings.fps*60
-	print(timer_on_win)
 	if timer_on_win<1 :
 		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
 	if timer_on_win<5 :
@@ -290,9 +289,9 @@ def animate_ending() :
 		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=True,begin_loop_at=97,end_loop_before=50))
 	if timer_on_win>150 :
 		CenterBlit(Screen,ending_image,settings.screen_mid)
+	timer_on_win=timer_on_win+1
 	if timer_on_win>tic_to_reset :
 		reset_Alpha()
-	timer_on_win=timer_on_win+1
 
 def reset_Alpha() :
 	global Points
