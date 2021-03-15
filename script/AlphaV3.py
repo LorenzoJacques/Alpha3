@@ -280,7 +280,7 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 
 def animate_ending() :
 	global timer_on_win
-	tic_to_reset=settings.reset_timer*settings.fps #*fps
+	tic_to_reset=200  #settings.reset_timer*settings.fps*60
 	if timer_on_win==0 :
 		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
 	if timer_on_win<5 :
@@ -296,12 +296,14 @@ def animate_ending() :
 def reset_Alpha() :
 	global Points
 	global timer_on_win
+	global counter
 	for i in range(0,30) :
 		if i!=0 and i!=10 and i!= 20 : #0, 10 et 20 ne coorepondent pas à des points qui existent.
 			Points[i]={'on':False,'num':str(i),'pos':(Data[i]["pos"][0]+screen_mid[0],Data[i]["pos"][1]+screen_mid[1]),'img':pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"])} #Récupère les données correspondante dans data
 		else :
 			Points[i]=False
 	timer_on_win=0
+	counter=0
 
 button.define_callback_poignee(Activation)
 counter=0
