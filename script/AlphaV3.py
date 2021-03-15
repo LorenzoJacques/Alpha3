@@ -250,12 +250,15 @@ def step_have_player_won() :
 
 #Activation
 def Activation(meh) :
-	print(meh)
-	msg=get_msg()
-	if IsMsgOk(msg) :
-		Activation_Good(msg)
+	if not step_have_player_won() :
+		print(meh)
+		msg=get_msg()
+		if IsMsgOk(msg) :
+			Activation_Good(msg)
+		else :
+			Activation_Bad()
 	else :
-		Activation_Bad()
+		print("You already won, chill dude")
 
 def Activation_Good(msg) :
 	sound.charge.play()
@@ -277,6 +280,7 @@ def IsMsgOk(msg) : #Verifie les conditions d'activation du Point demandé par ms
 
 def animate_ending() :
 	global timer_on_win
+	tic_to_reset=settings.reset_timer*settings.fps #*fps
 	if timer_on_win==0 :
 		Layers['temp'].append(Animation("charge_ending",screen_mid,speed=1,anim_loop=False))
 	if timer_on_win<5 :
@@ -285,7 +289,19 @@ def animate_ending() :
 		Layers['temp'].append(Animation("grow_ending",screen_mid,speed=1,anim_loop=True,begin_loop_at=97,end_loop_before=50))
 	if timer_on_win>150 :
 		CenterBlit(Screen,ending_image,settings.screen_mid)
+	if timer_on_win>tic_to_reset :
+		reset_Alpha()
 	timer_on_win=timer_on_win+1
+
+def reset_Alpha() :
+	global Points
+	global timer_on_win
+	for i in range(0,30) :
+		if i!=0 and i!=10 and i!= 20 : #0, 10 et 20 ne coorepondent pas à des points qui existent.
+			Points[i]={'on':False,'num':str(i),'pos':(Data[i]["pos"][0]+screen_mid[0],Data[i]["pos"][1]+screen_mid[1]),'img':pygame.transform.rotate(Data[i]["img"],Data[i]["tilt"])} #Récupère les données correspondante dans data
+		else :
+			Points[i]=False
+	timer_on_win=0
 
 button.define_callback_poignee(Activation)
 counter=0
@@ -299,7 +315,7 @@ while on :
 		if event.type == KEYDOWN and event.key == K_SPACE :
 			Activation("meh")
 		if event.type == KEYDOWN and event.key == K_BACKSPACE :
-			None
+			on=0
 		if event.type == KEYDOWN and event.key == K_a :
 			if counter==0 :
 				counter=1

@@ -18,6 +18,7 @@ r2=200
 fps=30
 screen_dimension=(1024,768)
 screen_mid=(screen_dimension[0]/2+calibrageW,screen_dimension[1]/2+calibrageH) #Variable contenant les coordonnées du milieu approxiamtif du vitrail
+reset_timer=1
 
 #----Déclaration des paths----#
 
